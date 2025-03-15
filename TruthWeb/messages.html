@@ -1,1 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0" name="viewport"/>
+  <title>Messages - TruthWeb</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+  <header class="sticky-header">
+    <!-- Same as index.html -->
+  </header>
 
+  <nav class="mobile-menu">
+    <!-- Same as index.html -->
+  </nav>
+
+  <main>
+    <section class="py-16 px-4">
+      <h1 class="text-3xl font-bold text-center mb-8">Messages</h1>
+      <div class="max-w-4xl mx-auto flex">
+        <div class="w-1/3 bg-[var(--secondary-color)] p-4 rounded-lg mr-4">
+          <h2 class="text-xl font-semibold mb-4">Chats</h2>
+          <div class="chat-list">
+            <div class="p-2 hover:bg-[var(--highlight-color)] cursor-pointer">User1</div>
+            <div class="p-2 hover:bg-[var(--highlight-color)] cursor-pointer">User2</div>
+          </div>
+        </div>
+        <div class="w-2/3 bg-[var(--secondary-color)] p-4 rounded-lg">
+          <div class="chat-messages h-64 overflow-y-auto mb-4">
+            <p><strong>User1:</strong> Hey, how's it going?</p>
+          </div>
+          <form id="message-form">
+            <input type="text" id="message-input" class="w-full p-2 border rounded" placeholder="Type a message...">
+            <button type="submit" class="btn accent mt-2">Send</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <nav class="footer-menu">
+    <!-- Same as index.html -->
+  </nav>
+
+  <footer>
+    <!-- Same as index.html -->
+  </footer>
+
+  <script src="scripts.js"></script>
+  <script>
+    const messageForm = document.getElementById('message-form');
+    const chatMessages = document.querySelector('.chat-messages');
+    messageForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const message = document.getElementById('message-input').value;
+      if (message) {
+        const msg = document.createElement('p');
+        msg.innerHTML = `<strong>You:</strong> ${message}`;
+        chatMessages.appendChild(msg);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+        messageForm.reset();
+      }
+    });
+  </script>
+</body>
+</html>
