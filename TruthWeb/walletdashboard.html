@@ -1,1 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0" name="viewport"/>
+  <title>Wallet Dashboard - TruthWeb</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+  <header class="sticky-header">
+    <div class="flex items-center">
+      <a href="index.html" class="text-inherit flex items-center">
+        <span class="logo-text ml-2">TruthWeb</span>
+      </a>
+    </div>
+    <div class="search-container">
+      <input type="text" class="search-input" placeholder="Search TruthWeb...">
+      <i class="fas fa-search search-icon"></i>
+      <div class="search-results"></div>
+    </div>
+    <div class="flex items-center">
+      <nav class="desktop-nav hidden md:flex items-center">
+        <ul class="flex space-x-4">
+          <li class="nav-item"><a href="index.html">Home</a></li>
+          <li class="nav-item"><a href="marketplace.html">Marketplace</a></li>
+          <li class="nav-item"><a href="profile.html">Profile</a></li>
+          <li class="nav-item"><a href="walletdashboard.html">Wallet</a></li>
+          <li class="nav-item"><a href="payment.html">Payment</a></li>
+          <li class="nav-item"><a href="community.html">Community</a></li>
+          <li class="nav-item"><a href="developers.html">Developers</a></li>
+          <li class="nav-item"><a href="about.html">About</a></li>
+        </ul>
+      </nav>
+      <a href="marketplace.html" class="icon"><i class="fas fa-shopping-cart"></i></a>
+      <a href="profile.html" class="icon"><i class="fas fa-user"></i></a>
+      <a href="messages.html" class="icon"><i class="fas fa-envelope"></i></a>
+      <div class="burger-btn">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
 
+  <nav class="mobile-menu">
+    <ul>
+      <li class="nav-item"><a href="index.html">Home</a></li>
+      <li class="nav-item"><a href="marketplace.html">Marketplace</a></li>
+      <li class="nav-item"><a href="profile.html">Profile</a></li>
+      <li class="nav-item"><a href="walletdashboard.html">Wallet</a></li>
+      <li class="nav-item"><a href="payment.html">Payment</a></li>
+      <li class="nav-item"><a href="community.html">Community</a></li>
+      <li class="nav-item"><a href="developers.html">Developers</a></li>
+      <li class="nav-item"><a href="about.html">About</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <section class="py-16 px-4">
+      <h1 class="text-3xl font-bold text-center mb-8">Wallet Dashboard</h1>
+      <div class="max-w-4xl mx-auto">
+        <div class="bg-[var(--secondary-color)] p-6 rounded-lg mb-6">
+          <h2 class="text-2xl font-semibold mb-4">Balance</h2>
+          <p class="text-4xl font-bold text-[var(--accent-color)]">1,250 Pi</p>
+          <div class="flex gap-4 mt-4">
+            <button class="btn accent" onclick="document.getElementById('send-form').classList.toggle('hidden')">Send Pi</button>
+            <button class="btn" onclick="alert('Your address: 0x1234...5678')">Receive Pi</button>
+          </div>
+          <form id="send-form" class="hidden mt-4">
+            <input type="text" class="w-full p-2 border rounded mb-2" placeholder="Recipient Address">
+            <input type="number" class="w-full p-2 border rounded mb-2" placeholder="Amount (Pi)" min="1">
+            <button type="submit" class="btn accent w-full">Send</button>
+          </form>
+        </div>
+        <div class="bg-[var(--secondary-color)] p-6 rounded-lg">
+          <h2 class="text-2xl font-semibold mb-4">Transaction History</h2>
+          <div class="feed-container">
+            <div class="feed-item">
+              <p>Sent 100 Pi to @User2</p>
+              <span class="feed-time">Mar 14, 2025</span>
+            </div>
+            <div class="feed-item">
+              <p>Received 500 Pi from Marketplace</p>
+              <span class="feed-time">Mar 13, 2025</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <nav class="footer-menu">
+    <a href="index.html"><i class="fas fa-home"></i></a>
+    <a href="marketplace.html"><i class="fas fa-shopping-cart"></i></a>
+    <a href="profile.html"><i class="fas fa-user"></i></a>
+    <a href="messages.html"><i class="fas fa-envelope"></i></a>
+  </nav>
+
+  <footer>
+    <div class="social-icons mb-4">
+      <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+      <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+    </div>
+    <p>© 2025 TruthWeb. All rights reserved.</p>
+  </footer>
+
+  <script src="scripts.js"></script>
+  <script>
+    document.getElementById('send-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('Transaction sent successfully!');
+      e.target.classList.add('hidden');
+      e.target.reset();
+    });
+  </script>
+</body>
+</html>
