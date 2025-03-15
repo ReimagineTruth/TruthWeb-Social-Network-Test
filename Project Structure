@@ -1,0 +1,12 @@
+TruthWeb/
+├── index.html           # Feed/Home page
+├── profile.html         # User profile page
+├── marketplace.html     # Marketplace page
+├── walletdashboard.html # Wallet dashboard
+├── payment.html         # Payment page
+├── community.html       # Community page
+├── developers.html      # Developers page
+├── about.html           # About page
+├── messages.html        # Messages page
+├── styles.css           # Shared styles
+└── scripts.js           # Shared scripts
