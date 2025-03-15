@@ -1,1 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0" name="viewport"/>
+  <title>Community - TruthWeb</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+  <header class="sticky-header">
+    <!-- Same as walletdashboard.html -->
+  </header>
 
+  <nav class="mobile-menu">
+    <!-- Same as walletdashboard.html -->
+  </nav>
+
+  <main>
+    <section class="py-16 px-4">
+      <h1 class="text-3xl font-bold text-center mb-8">Community</h1>
+      <div class="max-w-4xl mx-auto">
+        <div class="mb-8">
+          <h2 class="text-2xl font-semibold mb-4">Join a Group</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="bg-[var(--secondary-color)] p-4 rounded-lg">
+              <h3 class="font-bold">Pi Traders</h3>
+              <p>500 members</p>
+              <button class="btn accent mt-2">Join</button>
+            </div>
+            <div class="bg-[var(--secondary-color)] p-4 rounded-lg">
+              <h3 class="font-bold">Developers Hub</h3>
+              <p>300 members</p>
+              <button class="btn accent mt-2">Join</button>
+            </div>
+          </div>
+        </div>
+        <div class="bg-[var(--secondary-color)] p-6 rounded-lg">
+          <h2 class="text-2xl font-semibold mb-4">Forum</h2>
+          <form id="forum-form" class="mb-4">
+            <textarea class="w-full p-2 border rounded" placeholder="Start a discussion..." rows="3"></textarea>
+            <button type="submit" class="btn accent mt-2">Post</button>
+          </form>
+          <div class="feed-container">
+            <div class="feed-item">
+              <div class="feed-header">
+                <i class="fas fa-user-circle feed-avatar"></i>
+                <div>
+                  <span class="feed-user">User4</span>
+                  <span class="feed-time">Mar 15, 2025</span>
+                </div>
+              </div>
+              <p class="feed-content">Any tips for growing Pi value?</p>
+              <div class="feed-actions">
+                <button class="like-btn"><i class="far fa-thumbs-up"></i> <span>3</span></button>
+                <button class="comment-btn"><i class="far fa-comment"></i> <span>1</span></button>
+              </div>
+              <div class="comments hidden">
+                <input type="text" class="comment-input w-full p-2 border rounded mt-2" placeholder="Add a comment...">
+                <div class="comment-list mt-2"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <nav class="footer-menu">
+    <!-- Same as walletdashboard.html -->
+  </nav>
+
+  <footer>
+    <!-- Same as walletdashboard.html -->
+  </footer>
+
+  <script src="scripts.js"></script>
+  <script>
+    const forumForm = document.getElementById('forum-form');
+    const feedContainer = document.querySelector('.feed-container');
+    forumForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const content = forumForm.querySelector('textarea').value;
+      if (content) {
+        const post = document.createElement('div');
+        post.className = 'feed-item';
+        post.innerHTML = `
+          <div class="feed-header">
+            <i class="fas fa-user-circle feed-avatar"></i>
+            <div>
+              <span class="feed-user">You</span>
+              <span class="feed-time">${new Date().toLocaleDateString()}</span>
+            </div>
+          </div>
+          <p class="feed-content">${content}</p>
+          <div class="feed-actions">
+            <button class="like-btn"><i class="far fa-thumbs-up"></i> <span>0</span></button>
+            <button class="comment-btn"><i class="far fa-comment"></i> <span>0</span></button>
+          </div>
+          <div class="comments hidden">
+            <input type="text" class="comment-input w-full p-2 border rounded mt-2" placeholder="Add a comment...">
+            <div class="comment-list mt-2"></div>
+          </div>
+        `;
+        feedContainer.prepend(post);
+        forumForm.reset();
+        attachEventListeners(post);
+      }
+    });
+
+    function attachEventListeners(post) {
+      post.querySelector('.like-btn').addEventListener('click', () => {
+        const count = post.querySelector('.like-btn span');
+        count.textContent = parseInt(count.textContent) + 1;
+        const icon = post.querySelector('.like-btn i');
+        icon.classList.toggle('far');
+        icon.classList.toggle('fas');
+      });
+
+      const commentBtn = post.querySelector('.comment-btn');
+      const commentsSection = post.querySelector('.comments');
+      commentBtn.addEventListener('click', () => {
+        commentsSection.classList.toggle('hidden');
+      });
+
+      const commentInput = post.querySelector('.comment-input');
+      commentInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter' && commentInput.value) {
+          const comment = document.createElement('p');
+          comment.textContent = commentInput.value;
+          post.querySelector('.comment-list').appendChild(comment);
+          commentInput.value = '';
+          commentBtn.querySelector('span').textContent = parseInt(commentBtn.querySelector('span').textContent) + 1;
+        }
+      });
+    }
+
+    document.querySelectorAll('.feed-item').forEach(attachEventListeners);
+  </script>
+</body>
+</html>
